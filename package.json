@@ -1,0 +1,43 @@
+{
+  "name": "grunt-r4-closure-checker",
+  "description": "Plugin which checks for classes in your source code and alerts when goog.require calls for certain packages are missing.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/eredo/r4-grunt-closure-checker",
+  "author": {
+    "name": "Eric Schneller (eric@schnellers.name)",
+    "email": "eric@schnellers.name",
+    "url": "http://eric.schnellers.name"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://git@github.com:eredo/r4-grunt-closure-checker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eredo/r4-grunt-closure-checker/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/eredo/r4-grunt-closure-checker/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
