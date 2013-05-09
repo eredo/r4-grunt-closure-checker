@@ -24,12 +24,13 @@ In your project's Gruntfile, add a section named `r4_closure_checker` to the dat
 
 ```js
 grunt.initConfig({
-  r4_closure_checker: {
+  closureChecker: {
     options: {
       // Task-specific options go here.
     },
     your_target: {
       // Target-specific file lists and/or options go here.
+      src: []
     },
   },
 })
@@ -37,53 +38,48 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.printFix
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something with whatever.
+When dependencies are missing within the code the task returns the javascript which is missing.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### options.ignore
+Type: `Array.<String>`
+Default value: `[]`
 
-A string value that is used to do something else with whatever else.
+Packages that should not throw an error when missing.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
 ```js
 grunt.initConfig({
-  r4_closure_checker: {
+  closureChecker: {
     options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    src: ['lib/**/*.js']
+  }
 })
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, custom options are used to do something else with whatever else.
 
 ```js
 grunt.initConfig({
-  r4_closure_checker: {
+  closureChecker: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      printFix: true
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    src: ['lib/**/*.js']
   },
 })
 ```
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
 ## Release History
-_(Nothing yet)_
+0.1.0 -  2013-05-09
+
+## Roadmap
+0.2.0 -  Add an option to print the hole require stack for a file
+0.5.0 -  Add an option to correct the require stack automaticaly

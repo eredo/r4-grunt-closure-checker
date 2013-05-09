@@ -38,9 +38,13 @@ module.exports = function(grunt) {
       dev: {
         files: ['tasks/*.js'],
         tasks: ['closureCheck']
+      },
+      dev_test: {
+        files: ['tasks/**/*.js', 'test/*.js'],
+        tasks: ['nodeunit']
       }
     },
-
+    //
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']

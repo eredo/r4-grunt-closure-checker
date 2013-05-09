@@ -45,7 +45,7 @@ var getPackages = function(data) {
 var reg = /[\s|\(|;|=|\n]([a-z\._]+)/gi;
 
 /**
- *
+ * Run's the check.
  * @param {string} src
  * @param {Array<string>=} opt_ignore
  * @returns {Array}
@@ -79,7 +79,7 @@ module.exports = function(src, opt_ignore) {
 
   for (i = 0; m = used[i]; i++) {
     if (packs.provides.indexOf(m) === -1 && packs.requires.indexOf(m) === -1) {
-      if (opt_ignore && opt_ignore.indexOf(m) === -1) {
+      if (opt_ignore ? opt_ignore.indexOf(m) === -1 : true) {
         missing.push(m);
       }
     }
