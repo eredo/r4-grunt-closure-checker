@@ -28,7 +28,8 @@ module.exports = function(grunt) {
       default_options: {
         options: {
           printFix: true,
-          ignore: ['goog.notExists.Blub']
+          ignore: ['goog.notExists.Blub'],
+          available: ['goog\\.*', 'r4\\.*', 'sw\\.*']
         },
         src: ['test/sample/*.js']
       }
@@ -36,7 +37,7 @@ module.exports = function(grunt) {
 
     watch: {
       dev: {
-        files: ['tasks/*.js'],
+        files: ['tasks/**/*.js'],
         tasks: ['closureCheck']
       },
       dev_test: {

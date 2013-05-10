@@ -16,7 +16,8 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       printFix: false,
-      ignore: []
+      ignore: [],
+      available: ['goog\\.*']
     });
 
     var misses = false;
@@ -27,11 +28,13 @@ module.exports = function(grunt) {
 
         // read the content of the file
         var src = grunt.file.read(filepath);
-        var missing = checker(src, options.ignore);
+        var missing = checker(src, options.available, options.ignore, options.printFix);
+        missing.sort();
+
         var fix = [];
 
         for (var i = 0, m; m = missing[i]; i++) {
-          grunt.log.errorlns('Missing require of: ' + m.red + ' in ' + filepath.underline.blue);
+          grunt.log.error('Missing require of: ' + m.red + ' in ' + filepath.underline.blue);
 
           if (options.printFix) {
             fix.push('goog.require(\'' + m + '\');');
