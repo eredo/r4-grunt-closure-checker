@@ -44,6 +44,13 @@ Default value: `false`
 
 When dependencies are missing within the code the task returns the javascript which is missing.
 
+#### options.available
+Type: `Array.<String>`
+Default value: `['goog\\.*']`
+
+Array of regular expressions which are available in the project scope.
+
+
 #### options.ignore
 Type: `Array.<String>`
 Default value: `[]`
