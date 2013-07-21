@@ -9,3 +9,5 @@ test.Tlub = function() {
   goog.base(this);
 };
 goog.inherits(test.Tlub, goog.Disposable);
+
+var x = new goog.test.Blub();

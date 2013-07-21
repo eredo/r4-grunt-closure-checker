@@ -75,7 +75,6 @@ var getNamespace = function(parts) {
  * @return {boolean}
  */
 var isAvailable = function(ns, av) {
-
   for (var a = 0, aa; aa = av[a]; a++) {
     var r = new RegExp(aa);
 
@@ -90,6 +89,7 @@ var isAvailable = function(ns, av) {
 // regular expression to find used libraries
 var reg = /[\s|\(|;|=|\n]([a-z0-9\._]+)/gi;
 
+
 /**
  * @param {string} src
  * @param {Array.<string>} available Array contains sort of regular expression for available namespaces.
@@ -99,11 +99,13 @@ var reg = /[\s|\(|;|=|\n]([a-z0-9\._]+)/gi;
  */
 module.exports = function(src, available, opt_ignore, opt_generateFix) {
   var matches = src.match(reg);
+
+  //console.log(matches);
   var used = [];
   for (var i = 0, m; m = matches[i]; i++) {
     if (m.match(/\./) !== null) {
       // split into parts
-      var nsp = m.trim().replace(/\s|\(|;|=|\n/g, '').split(/\./i);
+      var nsp = m.trim().replace(/\s|\(|;|=|\n|\|/g, '').split(/\./i);
 
       // exclude basic variables
       if ((nsp.length < 2 || nsp[1] === '') || nsp[0] === 'this') {
@@ -115,8 +117,13 @@ module.exports = function(src, available, opt_ignore, opt_generateFix) {
         continue;
       }
 
+      // exclude global functions
+      if (nsp[0] === 'goog' && nsp[1] === 'global') {
+        continue;
+      }
+
       var ns = getNamespace(nsp);
-      if (isAvailable(ns, available)) {
+      if (isAvailable(ns, available) && ns.indexOf('.') !== -1 && ns.indexOf('.prototype.') === -1) {
         used.push(ns);
       }
     }

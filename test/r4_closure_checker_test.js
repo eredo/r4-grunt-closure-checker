@@ -4,6 +4,8 @@ var grunt = require('grunt'),
     path =  require('path'),
     checker = require(path.join(__dirname, '..', 'tasks', 'lib', 'checker.js'));
 
+var available = ['goog\\.*'];
+
 /*
   ======== A Handy Little Nodeunit Reference ========
   https://github.com/caolan/nodeunit
@@ -30,11 +32,12 @@ exports.r4_closure_checker = {
     test.expect(2);
 
     var src = grunt.file.read(path.join(__dirname, 'test_missing_style.js'));
-    var missing = checker(src);
+    var missing = checker(src, available);
+    console.log(missing);
     test.ok(missing.length && missing[0] === 'goog.style', 'goog.style should be missing.');
 
     var src = grunt.file.read(path.join(__dirname, 'test_missing_disposable.js'));
-    var missing = checker(src);
+    var missing = checker(src, available);
     test.ok(missing.length && missing[0] === 'goog.Disposable', 'goog.Disposable should be missing.');
 
     test.done();
